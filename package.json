@@ -9,6 +9,7 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@mauron85/react-native-background-geolocation": "^0.6.3",
     "expo": "~48.0.6",
     "expo-splash-screen": "~0.18.1",
     "expo-status-bar": "~1.4.4",
