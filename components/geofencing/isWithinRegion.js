@@ -1,22 +1,23 @@
-
-
-const isWithinRegion = () => {
-    let regionLat = 41.724970;
-    let regionLong = -87.807030;
-    let meters = 200;
-    let coef = meters / 111320.0;
-    let negCoef = (-1.0 * meters) / 111320.0;
-
-    let newLatitude = regionLat + coef
-    let newLongitude = regionLong + (coef / Math.cos(regionLat * (Math.PI / 180)))
-
-    let negNewLatitude = regionLat + negCoef
-    let negNewLongitude = regionLong + (negCoef / Math.cos(regionLat * (Math.PI / 180)))
-
-    console.log(newLatitude + ", " + regionLong);
-    console.log(regionLat + ", " + newLongitude);
-    console.log(negNewLatitude + ", " + regionLong);
-    console.log(regionLat + ", " + negNewLongitude);
+const isWithinRegion = (point) => {
+    //make api call to get geofences made
+    let j = 0;
+    let geofence = ;
+    let edges = geofence.geofence_edges;
+    let numSides = geofence.geofence_edges.length;
+    let oddNodes = false;
+    for(let i = 0; i < numSides; i++) {
+        j++;
+        if(j == numSides){
+            j = 0;
+        }
+        if( 
+            ((edges[i].latitude < point.latitude) && (edges[j].latitude >= point.latitude)) || 
+            ((edges[j].latitude < point.latitude) && (edges[i].latitude >= point.latitude))
+            ) {
+                if(edges[i].longitude + (point.latitude - edges[i].latitude) / (edges[j].latitude - edges[i].latitude) * (edges[j].longitude - edges[i].longitude) < point.longitude) {
+                    oddNodes = !oddNodes;
+                }
+            }
+    }
+    return oddNodes;
 }
-
-isWithinRegion(41.725146, -87.8421077);

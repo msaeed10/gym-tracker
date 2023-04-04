@@ -32,3 +32,5 @@ const createFence = (region) => {
         ]
     }
 }
+
+export default createFence;
