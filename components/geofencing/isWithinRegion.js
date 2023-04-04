@@ -1,7 +1,7 @@
 const isWithinRegion = (point) => {
-    //make api call to get geofences made
     let j = 0;
-    let geofence = ;
+    //TODO: make api call to get geofences made
+    let geofence = apicall;
     let edges = geofence.geofence_edges;
     let numSides = geofence.geofence_edges.length;
     let oddNodes = false;
